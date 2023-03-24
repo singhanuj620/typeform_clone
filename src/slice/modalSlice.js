@@ -2,23 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const modalSlice = createSlice({
     name: 'modal',
-    initialState: {},
+    initialState: {
+        fullScreen: true,
+        type: "Loader",
+    },
     reducers: {
         setModal: (state, action) => {
-            const todo = {
-                id: '1234',
-                text: action.payload,
-            };
-
-            state.push(todo);
+            const { type, fullScreen } = action.payload;
+            state.type = type
+            state.fullScreen = fullScreen
         },
-        resetModal: (state, action) => {
-            const todo = {
-                id: '1234',
-                text: action.payload,
-            };
-
-            state.push(todo);
+        resetModal: (state) => {
+            state.type = ""
+            state.fullScreen = true
         }
     }
 });

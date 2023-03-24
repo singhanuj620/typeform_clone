@@ -1,0 +1,11 @@
+.modal-fullScreen{
+    height: 99.6%;
+    position: absolute;
+    top: 0;
+    width: 99.8%;
+    margin: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+    z-index: 99;
+}
