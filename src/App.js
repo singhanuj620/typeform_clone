@@ -3,6 +3,8 @@ import './App.css';
 import { resetModal } from './slice/modalSlice';
 import { useEffect } from 'react';
 import Modal from './Container/Modals/Modal'
+import Navbar from './Component/Navbar/Navbar'
+import Homepage from './Container/Homepage/Homepage'
 
 const App = () => {
   const { type, fullScreen } = useSelector((state) => state.modal);
@@ -16,7 +18,8 @@ const App = () => {
   return (
     <div className="app">
       {type !== "" && <Modal type={type} fullScreen={fullScreen} />}
-      Anuj
+      <Navbar />
+      <Homepage />
     </div>
   );
 }

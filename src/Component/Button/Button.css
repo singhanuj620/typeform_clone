@@ -1,0 +1,16 @@
+.button{
+    cursor: pointer;
+    font-family: "Questrial", sans-serif;
+     font-size: 20px ;
+     line-height: 28px ;
+     text-align: left ;
+     word-spacing: 0px;
+     background-color: #268BFF;
+     color: white;
+     border-radius: 5%;
+     height: 2.5rem;
+     width: 6rem;
+     display: flex;
+     justify-content:center;
+     align-items:center;
+}
