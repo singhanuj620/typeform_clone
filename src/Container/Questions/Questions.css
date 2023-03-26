@@ -1,0 +1,40 @@
+.svg-ques {
+    width: 0.7em;
+    height: 0.7em;
+}
+
+.svg-ques path,
+.svg-ques polygon,
+.svg-ques rect {
+    fill: #fafafa;
+}
+
+.svg-ques circle {
+    stroke: #ffffff;
+    stroke-width: 1;
+}
+
+.ques{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    height: 94vh;
+    margin-top: -3%;
+}
+
+.ques-title{
+    font-size: 1.8rem;
+    font-family: "Questrial", sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 52%;
+}
+
+.ans{
+    margin-top: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
