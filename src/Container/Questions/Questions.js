@@ -4,11 +4,13 @@ import { questions } from '../../questions'
 import { useSelector, useDispatch } from 'react-redux';
 import Input from '../../Component/Input/Input'
 import Button from '../../Component/Button/Button'
+import Dropdown from '../../Component/Dropdown/Dropdown'
 import { setQuestionNumber } from '../../slice/changeScreenSlice';
 import { setAnswer } from '../../slice/answerSlice';
 
 const Questions = () => {
     const { questionNumber } = useSelector((state) => state.screen);
+    const answer = useSelector((state) => state.answer);
     const question = questions.filter(question => question.id === questionNumber)[0];
     const dispatch = useDispatch();
 
@@ -19,9 +21,14 @@ const Questions = () => {
         setInputFiled(e.target.value);
     }
 
+    const handleDropdownResponse = () => {
+        alert('III')
+    }
+
     const answerJSX = (type) => {
         switch (type) {
             case "input": return <Input placeholder={question.placeholder} handleInputResponse={handleInputResponse} value={inputField} />
+            case "dropdown": return <Dropdown options={question.dropdownOptions} placeholder={question.placeholder} handleDropdownResponse={handleStoreAnswer} value />
             default: return <div></div>
         }
     }
@@ -30,7 +37,6 @@ const Questions = () => {
         const keyDownHandler = event => {
 
             if (event.key === 'Enter') {
-                event.preventDefault();
                 handleStoreAnswer();
             }
         };
@@ -41,20 +47,37 @@ const Questions = () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [question]);
 
-    const handleStoreAnswer = () => {
-
+    const handleStoreAnswer = ({ value }) => {
         switch (question.type) {
             case "input":
                 dispatch(setAnswer({ questionId: question.id, answer: inputField }))
                 setInputFiled("")
                 break
+            case "dropdown":
+                dispatch(setAnswer({ questionId: question.id, answer: value }))
+                break
             default: { }
         }
 
         // change question
-        dispatch(setQuestionNumber({ number: questionNumber + 1 }))
+        dispatch(setQuestionNumber({ number: question.id + 1 }))
+    }
+
+    const findReplacedWord = (id) => {
+        return answer.filter(ans => ans.id === id)[0].answer
+    }
+
+    const renderQuestionTitle = () => {
+        if (!question.title.isDynamic) {
+            return question.title.text
+        }
+        let newTitle = question.title.text
+        question.title.dependentValue.forEach(({ questionId, word }) => {
+            newTitle = newTitle.replace(word, findReplacedWord(questionId))
+        })
+        return newTitle
     }
 
     return (
@@ -69,13 +92,14 @@ const Questions = () => {
 	S1.293,9.212,1.729,9.212z"></path>
                 </svg>
                 &nbsp; &nbsp;
-                {question.title.text}
+                {renderQuestionTitle()}
                 {question.isRequired && ' *'}
             </div>
+            <div className={question.title.subText ? `ques-sub-title` : ''}>{question.title.subText && question.title.subText}</div>
             <div className="ans">{answerJSX(question.type)}</div>
             <div className="ques-btn">
                 <div><Button text={"OK"} onClick={handleStoreAnswer} /></div>
-                <div> &nbsp; &nbsp; press <strong>Enter</strong> ↵</div>
+                {question.type !== "dropdown" && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
             </div>
         </div >
     )

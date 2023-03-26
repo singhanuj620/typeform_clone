@@ -1,0 +1,15 @@
+.option-value{
+    font-family: "Questrial", sans-serif;
+    font-size: 1.4rem;
+    border: 1px solid white;
+    width: 99%;
+    padding: 1%;
+    margin-top: 0.8%;
+    border-radius: 5px;
+}
+
+.option-value:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}

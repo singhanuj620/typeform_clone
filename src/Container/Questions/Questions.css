@@ -19,8 +19,8 @@
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    height: 94vh;
-    margin-top: -3%;
+    height: auto;
+    margin-top: 13%;
 }
 
 .ques-title{
@@ -37,4 +37,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.ques-sub-title {
+    font-size: 1.3rem;
+    font-family: "Questrial", sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 42%;
+    margin-top: 1%;
+    color: rgb(175, 175, 175);
 }
