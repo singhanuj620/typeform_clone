@@ -43,7 +43,7 @@
     width: 98%;
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
     .dropdown-div {
         width: 80vw;
         margin-left: 4%;

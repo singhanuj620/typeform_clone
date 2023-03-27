@@ -40,7 +40,7 @@
     align-items: center;
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
     .option-div {
         width: 78vw;
         margin-left: 1%;

@@ -40,7 +40,7 @@
     font-family: "Questrial", sans-serif;
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
     .input-div {
         width: 60vw;
         margin-left: 1rem;

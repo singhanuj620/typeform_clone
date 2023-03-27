@@ -9,7 +9,7 @@
     font-size: 1.8rem;
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
 .thankyou-div {
         font-family: "Questrial", sans-serif;
         height: 94%;

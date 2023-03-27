@@ -69,7 +69,7 @@
     }
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
     .loader-img{
         width: 30vw;
     }

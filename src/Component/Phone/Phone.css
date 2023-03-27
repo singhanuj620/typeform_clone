@@ -7,7 +7,7 @@
     align-items: flex-start;
 }
 
-@media (min-width: 400px) and (max-width: 900px) {
+@media (max-width: 900px) {
 .phone-div {
         width: 75vw;
         margin-left: -1rem;
