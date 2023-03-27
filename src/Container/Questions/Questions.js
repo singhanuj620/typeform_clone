@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Input from '../../Component/Input/Input'
 import Button from '../../Component/Button/Button'
 import Dropdown from '../../Component/Dropdown/Dropdown'
-import { setQuestionNumber } from '../../slice/changeScreenSlice';
+import { setQuestionNumber, setScreen } from '../../slice/changeScreenSlice';
 import { setAnswer } from '../../slice/answerSlice';
 import Options from '../../Component/Options/Options'
 import Phone from '../../Component/Phone/Phone'
@@ -72,12 +72,16 @@ const Questions = () => {
                 break
             case "dropdown":
                 dispatch(setAnswer({ questionId: question.id, answer: dropdownResponse }))
+                setDropdownResponse("")
                 break
             case "option":
                 dispatch(setAnswer({ questionId: question.id, answer: optionResponse }))
+                setOptionResponse([])
                 break
             case "phone":
                 dispatch(setAnswer({ questionId: question.id, answer: phoneResponse }))
+                setPhoneResponse()
+                dispatch(setScreen({ screenName: "thankyou" }))
                 break
             default: { }
         }

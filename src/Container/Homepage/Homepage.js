@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './Homepage.css'
 import Button from '../../Component/Button/Button'
 import { useDispatch } from 'react-redux';
-import { setScreen } from '../../slice/changeScreenSlice';
+import { setScreen, setQuestionNumber } from '../../slice/changeScreenSlice';
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const Homepage = () => {
 
     const handleStart = () => {
         dispatch(setScreen({ screenName: "questions" }))
+        dispatch(setQuestionNumber({ number: 1 }))
     }
 
     return (

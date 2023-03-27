@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const changeScreenSlice = createSlice({
     name: 'screen',
     initialState: {
-        screen: "questions",
-        questionNumber: 7
+        screen: "loader",
+        questionNumber: 0
     },
     reducers: {
         setScreen: (state, action) => {

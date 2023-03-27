@@ -4,7 +4,7 @@ import './Modal.css'
 
 const Modal = ({ type, fullScreen, ...props }) => {
     switch (type) {
-        case 'Loader': return (
+        case 'loader': return (
             <div className={fullScreen && 'modal-fullScreen'}><Loader /></div>
         )
         default: return (<div></div>)

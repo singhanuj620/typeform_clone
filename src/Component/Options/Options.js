@@ -16,6 +16,11 @@ const Options = ({ options, handleOptionResponse, optionLimit }) => {
         }
     }
 
+    useEffect(() => {
+        setOptionAnswer([])
+        setIsAnswerCompleted(false)
+    }, [options])
+
     const handleOnClick = (option) => {
         const isOptionAlreadySelected = optionAnswer.filter(item => item === option).length === 1
         if (isOptionAlreadySelected) {
