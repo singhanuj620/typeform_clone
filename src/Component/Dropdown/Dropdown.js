@@ -23,7 +23,7 @@ const Dropdown = ({ options, placeholder, handleDropdownResponse }) => {
             newOptions = options
         }
         dropdownOptions.forEach(element => {
-            if ((element.toLowerCase()).includes(e.target.value)) {
+            if ((element.toLowerCase()).includes((e.target.value).toLowerCase())) {
                 newOptions.push(element)
             }
         });

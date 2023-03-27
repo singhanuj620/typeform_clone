@@ -45,7 +45,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 42%;
+    width: 52%;
     margin-top: 1%;
+    margin-left: 8%;
     color: rgb(175, 175, 175);
+}
+
+.ques-btn{
+    margin-left: -2%;
 }

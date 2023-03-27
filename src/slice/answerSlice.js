@@ -7,9 +7,8 @@ export const answerSlice = createSlice({
         setAnswer: (state, action) => {
             const { questionId, answer } = action.payload;
             const ifAnswerAlreadyExist = state.filter(ans => ans.id === questionId)
-            console.log(ifAnswerAlreadyExist)
             if (ifAnswerAlreadyExist && ifAnswerAlreadyExist.length === 1) {
-                ifAnswerAlreadyExist.answer = answer;
+                ifAnswerAlreadyExist[0].answer = answer;
             }
             else {
                 state.push({
@@ -17,8 +16,7 @@ export const answerSlice = createSlice({
                     answer: answer
                 })
             }
-
-        },
+        }
     }
 });
 

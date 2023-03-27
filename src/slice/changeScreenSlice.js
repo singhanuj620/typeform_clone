@@ -4,7 +4,7 @@ export const changeScreenSlice = createSlice({
     name: 'screen',
     initialState: {
         screen: "questions",
-        questionNumber: 3
+        questionNumber: 7
     },
     reducers: {
         setScreen: (state, action) => {

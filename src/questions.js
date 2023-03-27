@@ -1,3 +1,70 @@
+const countryPhoneNumber = {
+    IN: "91",
+    AF: "93",
+    AX: "358",
+    AL: "355",
+    DZ: "213",
+    AS: "1-684",
+    AD: "376",
+    AO: "244",
+    AI: "1-264",
+    AQ: "672",
+    AG: "1-268",
+    AR: "54",
+    AM: "374",
+    AW: "297",
+    AU: "61",
+    AT: "43",
+    AZ: "994",
+    BS: "1-242",
+    BH: "973"
+}
+
+const countryCode = [
+    "IN",
+    "AF",
+    "AX",
+    "AL",
+    "DZ",
+    "AS",
+    "AD",
+    "AO",
+    "AI",
+    "AQ",
+    "AG",
+    "AR",
+    "AM",
+    "AW",
+    "AU",
+    "AT",
+    "AZ",
+    "BS",
+    "BH"
+]
+
+const countryName = {
+    "IN": "India",
+    "AF": "Afghanistan",
+    "AX": "Åland Islands",
+    "AL": "Albania",
+    "DZ": "Algeria",
+    "AS": "American Samoa",
+    "AD": "Andorra",
+    "AO": "Angola",
+    "AI": "Anguilla",
+    "AQ": "Antarctica",
+    "AG": "Antigua and Barbuda",
+    "AR": "Argentina",
+    "AM": "Armenia",
+    "AW": "Aruba",
+    "AU": "Australia",
+    "AT": "Austria",
+    "AZ": "Azerbaijan",
+    "BS": "Bahamas",
+    "BH": "Bahrain",
+}
+
+
 export const questions = [
     {
         id: 1,
@@ -7,7 +74,8 @@ export const questions = [
         title: {
             isDynamic: false,
             text: "What's your first name?"
-        }
+        },
+        lastQuestion: false
     },
     {
         id: 2,
@@ -21,7 +89,8 @@ export const questions = [
                 word: "_firstname"
             }],
             text: "and your last name, _firstname ?"
-        }
+        },
+        lastQuestion: false
     },
     {
         id: 3,
@@ -183,7 +252,8 @@ export const questions = [
             "Wine and Spirits",
             "Wireless",
             "Writing and Editing"
-        ]
+        ],
+        lastQuestion: false
     },
     {
         id: 4,
@@ -201,6 +271,58 @@ export const questions = [
             "Marketing Team",
             "VC",
             "Other"
-        ]
+        ],
+        lastQuestion: false
+    },
+    {
+        id: 5,
+        type: "option",
+        optionLimit: 2,
+        isRequired: true,
+        title: {
+            isDynamic: true,
+            text: "_firstname, what's your professional goal for the next 12 months?",
+            dependentValue: [{
+                questionId: 1,
+                word: "_firstname"
+            }],
+        },
+        options: [
+            "Get Hired",
+            "Get Promoted",
+            "Connect with like-minded people",
+            "Structured approach to growth",
+            "Build a growth team"
+        ],
+        lastQuestion: false
+    },
+    {
+        id: 6,
+        type: "input",
+        isRequired: true,
+        title: {
+            isDynamic: false,
+            text: "Email you'd like to register with?",
+            subText: "We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email. [ 🔴DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. ]"
+        },
+        placeholder: "name@example.com",
+        lastQuestion: false
+    },
+    {
+        id: 7,
+        type: "phone",
+        isRequired: true,
+        title: {
+            isDynamic: false,
+            text: "Your phone number",
+            subText: "We won't call you unless it is absolutely required to process your application."
+        },
+        placeholder: "08123456789",
+        lastQuestion: true,
+        countryPhoneNumber,
+        countryCode,
+        countryName
     }
 ]
+
+

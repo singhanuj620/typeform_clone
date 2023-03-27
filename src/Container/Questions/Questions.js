@@ -7,6 +7,8 @@ import Button from '../../Component/Button/Button'
 import Dropdown from '../../Component/Dropdown/Dropdown'
 import { setQuestionNumber } from '../../slice/changeScreenSlice';
 import { setAnswer } from '../../slice/answerSlice';
+import Options from '../../Component/Options/Options'
+import Phone from '../../Component/Phone/Phone'
 
 const Questions = () => {
     const { questionNumber } = useSelector((state) => state.screen);
@@ -14,21 +16,35 @@ const Questions = () => {
     const question = questions.filter(question => question.id === questionNumber)[0];
     const dispatch = useDispatch();
 
-    const [inputField, setInputFiled] = useState("");
+    const [inputField, setInputField] = useState("");
+    const [dropdownResponse, setDropdownResponse] = useState("");
+    const [optionResponse, setOptionResponse] = useState([]);
+    const [phoneResponse, setPhoneResponse] = useState();
 
     const handleInputResponse = (e) => {
         e.preventDefault();
-        setInputFiled(e.target.value);
+        setInputField(e.target.value);
+        dispatch(setAnswer({ questionId: question.id, answer: e.target.value }))
     }
 
-    const handleDropdownResponse = () => {
-        alert('III')
+    const handleDropdownResponse = ({ value }) => {
+        setDropdownResponse(value)
+    }
+
+    const handleOptionResponse = (option) => {
+        setOptionResponse(option)
+    }
+
+    const handlePhoneResponse = (value) => {
+        setPhoneResponse(value)
     }
 
     const answerJSX = (type) => {
         switch (type) {
             case "input": return <Input placeholder={question.placeholder} handleInputResponse={handleInputResponse} value={inputField} />
-            case "dropdown": return <Dropdown options={question.dropdownOptions} placeholder={question.placeholder} handleDropdownResponse={handleStoreAnswer} value />
+            case "dropdown": return <Dropdown options={question.dropdownOptions} placeholder={question.placeholder} handleDropdownResponse={handleDropdownResponse} />
+            case "option": return <Options options={question.options} handleOptionResponse={handleOptionResponse} optionLimit={question.optionLimit} />
+            case "phone": return <Phone countryCode={question.countryCode} countryPhoneNumber={question.countryPhoneNumber} inputPlaceholder={question.placeholder} handlePhoneResponse={handlePhoneResponse} countryName={question.countryName} />
             default: return <div></div>
         }
     }
@@ -49,20 +65,30 @@ const Questions = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [question]);
 
-    const handleStoreAnswer = ({ value }) => {
+    const handleStoreAnswer = () => {
         switch (question.type) {
             case "input":
-                dispatch(setAnswer({ questionId: question.id, answer: inputField }))
-                setInputFiled("")
+                setInputField("")
                 break
             case "dropdown":
-                dispatch(setAnswer({ questionId: question.id, answer: value }))
+                dispatch(setAnswer({ questionId: question.id, answer: dropdownResponse }))
+                break
+            case "option":
+                dispatch(setAnswer({ questionId: question.id, answer: optionResponse }))
+                break
+            case "phone":
+                dispatch(setAnswer({ questionId: question.id, answer: phoneResponse }))
                 break
             default: { }
         }
 
         // change question
-        dispatch(setQuestionNumber({ number: question.id + 1 }))
+        if (!question.lastQuestion) {
+            dispatch(setQuestionNumber({ number: question.id + 1 }))
+        }
+        else {
+
+        }
     }
 
     const findReplacedWord = (id) => {
@@ -96,10 +122,11 @@ const Questions = () => {
                 {question.isRequired && ' *'}
             </div>
             <div className={question.title.subText ? `ques-sub-title` : ''}>{question.title.subText && question.title.subText}</div>
+            <div className={question.type === "option" ? `ques-sub-title` : ''}>{question.type === "option" && `Choose ${question.optionLimit} option`}</div>
             <div className="ans">{answerJSX(question.type)}</div>
             <div className="ques-btn">
-                <div><Button text={"OK"} onClick={handleStoreAnswer} /></div>
-                {question.type !== "dropdown" && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
+                <div><Button text={question.lastQuestion ? "Submit" : "OK"} onClick={handleStoreAnswer} /></div>
+                {(question.type == "text") && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
             </div>
         </div >
     )

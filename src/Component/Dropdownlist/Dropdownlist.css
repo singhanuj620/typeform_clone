@@ -1,4 +1,4 @@
-.option-value{
+.dropoption-value{
     font-family: "Questrial", sans-serif;
     font-size: 1.4rem;
     border: 1px solid white;
@@ -8,8 +8,23 @@
     border-radius: 5px;
 }
 
-.option-value:hover{
+.dropoption-value:hover{
     background-color: white;
     color: black;
     cursor: pointer;
+}
+.dropphone-value:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.dropphone-value{
+    font-family: "Questrial", sans-serif;
+        font-size: 1.4rem;
+        border: 1px solid white;
+        width: 94%;
+        padding: 3%;
+        margin-top: 3%;
+        border-radius: 5px;
 }
