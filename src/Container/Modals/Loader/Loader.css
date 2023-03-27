@@ -68,3 +68,20 @@
         transform: translateY(0%);
     }
 }
+
+@media (min-width: 400px) and (max-width: 900px) {
+    .loader-img{
+        width: 30vw;
+    }
+
+    .loader-img-div{
+        margin-left: -20%;
+    }
+
+        .loader-horizontal-div {
+            display: flex;
+            width: 45%;
+            color: white;
+            margin-top: 6%;
+        }
+}

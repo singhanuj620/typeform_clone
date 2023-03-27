@@ -23,19 +23,31 @@
     cursor: pointer;
 }
 
-.option-value-selected{
+.option-value-selected {
     background-color: white;
     color: black;
 }
 
-.option-discarded{
-    background-color:rgb(129, 126, 126) !important;
+.option-discarded {
+    background-color: rgb(129, 126, 126) !important;
     color: rgb(179, 179, 179) !important;
 }
 
-.option-row{
+.option-row {
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
+}
+
+@media (min-width: 400px) and (max-width: 900px) {
+    .option-div {
+        width: 78vw;
+        margin-left: 1%;
+    }
+
+    .option-value {
+        font-size: 1rem;
+        padding: 2%;
+    }
 }

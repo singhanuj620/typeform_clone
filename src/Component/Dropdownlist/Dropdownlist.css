@@ -28,3 +28,21 @@
         margin-top: 3%;
         border-radius: 5px;
 }
+
+@media (min-width: 400px) and (max-width: 900px) {
+.dropoption-value {
+        font-size: 1rem;
+        border: 1px solid white;
+        width: 95%;
+        padding: 2%;
+        margin-top: 2%;
+    }
+
+        .dropphone-value {
+            font-size: 1rem;
+            width: 94%;
+            padding: 3%;
+            margin-top: 3%;
+            border-radius: 5px;
+        }
+}

@@ -130,7 +130,7 @@ const Questions = () => {
             <div className="ans">{answerJSX(question.type)}</div>
             <div className="ques-btn">
                 <div><Button text={question.lastQuestion ? "Submit" : "OK"} onClick={handleStoreAnswer} /></div>
-                {(question.type == "text") && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
+                {(question.type === "text") && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
             </div>
         </div >
     )

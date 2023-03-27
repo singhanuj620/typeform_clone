@@ -41,7 +41,7 @@ const Dropdown = ({ options, placeholder, handleDropdownResponse }) => {
             <div className='dropdown-div'>
                 <input className="dropdown-value" placeholder={placeholder} type="text" onChange={(e) => fetchResponse(e)} onClick={() => setIsDropdownSelected(!isDropdownSelected)} value={currentValue}>
                 </input>
-                <div>{isDropdownSelected ? <img src={uparrow} alt="uparrow" className='arrow-icon' /> : <img src={downarrow} alt="downarrow" className='arrow-icon' />}</div>
+                <div >{isDropdownSelected ? <img src={uparrow} alt="uparrow" className='arrow-icon' /> : <img src={downarrow} alt="downarrow" className='arrow-icon' />}</div>
             </div>
             {isDropdownSelected && <div className='dropdown-div dropdown-option-div'>
                 {dropdownOptions.map((value, ind) => <div className='dropdown-option-container'><Dropdownlist key={ind} value={value} handleClick={handleDropdownClick} /></div>)}

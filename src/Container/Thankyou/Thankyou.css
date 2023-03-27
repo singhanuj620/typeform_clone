@@ -8,3 +8,13 @@
     margin-left: -10%;
     font-size: 1.8rem;
 }
+
+@media (min-width: 400px) and (max-width: 900px) {
+.thankyou-div {
+        font-family: "Questrial", sans-serif;
+        height: 94%;
+        width: 99.8%;
+        margin-left: 0;
+        font-size: 1.1rem;
+    }
+}

@@ -1,11 +1,11 @@
-.navbar{
+.navbar {
     width: auto;
     height: 5vh;
 }
 
-.navbar-logo{
+.navbar-logo {
     object-fit: contain;
-    height:80%;
+    height: 80%;
     margin: 1% 2%;
     animation: navbar-logo-transition 0.6s ease-in;
     animation-delay: 1.5s;
@@ -18,5 +18,13 @@
 
     100% {
         transform: translateY(0%);
+    }
+}
+
+@media (min-width: 400px) and (max-width: 900px) {
+    .navbar-logo {
+        object-fit: contain;
+        height: 50%;
+        margin: 3% 3%;
     }
 }

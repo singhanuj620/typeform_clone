@@ -42,3 +42,17 @@
 .dropdownphone-option-container{
     width: 98%;
 }
+
+@media (min-width: 400px) and (max-width: 900px) {
+.dropdownphone-div {
+        width: 110%;
+        margin-top: 13%;
+    }
+
+        .dropdownphone-option-div {
+            width: 110%;
+            height: 13rem;
+            margin-top: 2%;
+            margin-left: 0;
+        }
+}
