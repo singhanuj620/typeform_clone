@@ -13,13 +13,13 @@ const App = () => {
   const { screen } = useSelector((state) => state.screen);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(resetModal())
-      dispatch(setScreen({ screenName: "homepage" }))
-    }, 1500)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(resetModal())
+  //     dispatch(setScreen({ screenName: "homepage" }))
+  //   }, 1500)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   const renderScreen = (screen) => {
     switch (screen) {

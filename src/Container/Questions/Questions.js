@@ -9,6 +9,7 @@ import { setQuestionNumber, setScreen } from '../../slice/changeScreenSlice';
 import { setAnswer } from '../../slice/answerSlice';
 import Options from '../../Component/Options/Options'
 import Phone from '../../Component/Phone/Phone'
+import Progressbar from '../../Component/Progressbar/Progressbar'
 
 const Questions = () => {
     const { questionNumber } = useSelector((state) => state.screen);
@@ -112,6 +113,7 @@ const Questions = () => {
 
     return (
         <div className='ques'>
+            <Progressbar questionNumber={question.id} />
             <div className='ques-title'>
                 {questionNumber} &nbsp;
                 <svg className="svg-ques" viewBox="0 0 20 20">
