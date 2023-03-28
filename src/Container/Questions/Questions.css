@@ -55,16 +55,16 @@
     margin-left: -2%;
 }
 
-.error-div{
+.error-div {
     font-size: 1.3rem;
     font-family: "Questrial", sans-serif;
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    background-color:yellow;
+    background-color: yellow;
     color: black;
-    padding-left:5px;
+    padding-left: 5px;
 }
 
 @media (max-width: 900px) {
@@ -82,9 +82,9 @@
         margin-left: 5%;
     }
 
-        .error-div {
-            font-size: 0.8rem;
-            padding-left: 5px;
-            margin-top: 5%;
-        }
+    .error-div {
+        font-size: 0.8rem;
+        padding-left: 5px;
+        margin-top: 5%;
+    }
 }
