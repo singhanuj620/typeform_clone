@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Questions.css'
 import { questions } from '../../questions'
 import { useSelector, useDispatch } from 'react-redux';

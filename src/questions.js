@@ -331,5 +331,4 @@ export const questions = [
     }
 ]
 
-
 export const totalQuestions = 7
