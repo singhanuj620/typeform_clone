@@ -75,7 +75,8 @@ export const questions = [
             isDynamic: false,
             text: "What's your first name?"
         },
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "First Name"
     },
     {
         id: 2,
@@ -90,7 +91,8 @@ export const questions = [
             }],
             text: "and your last name, _firstname ?"
         },
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "Last Name"
     },
     {
         id: 3,
@@ -253,7 +255,8 @@ export const questions = [
             "Wireless",
             "Writing and Editing"
         ],
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "Industry of Company"
     },
     {
         id: 4,
@@ -269,10 +272,10 @@ export const questions = [
             "Founder or CXO",
             "Product Team",
             "Marketing Team",
-            "VC",
-            "Other"
+            "VC"
         ],
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "Role"
     },
     {
         id: 5,
@@ -294,11 +297,12 @@ export const questions = [
             "Structured approach to growth",
             "Build a growth team"
         ],
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "Professional Goal"
     },
     {
         id: 6,
-        type: "input",
+        type: "email",
         isRequired: true,
         title: {
             isDynamic: false,
@@ -306,7 +310,8 @@ export const questions = [
             subText: "We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email. [ 🔴DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. ]"
         },
         placeholder: "name@example.com",
-        lastQuestion: false
+        lastQuestion: false,
+        ResponseTitle: "Email"
     },
     {
         id: 7,
@@ -321,7 +326,8 @@ export const questions = [
         lastQuestion: true,
         countryPhoneNumber,
         countryCode,
-        countryName
+        countryName,
+        ResponseTitle: "Phone"
     }
 ]
 

@@ -10,6 +10,7 @@ import { setAnswer } from '../../slice/answerSlice';
 import Options from '../../Component/Options/Options'
 import Phone from '../../Component/Phone/Phone'
 import Progressbar from '../../Component/Progressbar/Progressbar'
+import { formValidation } from '../../Utilities/formValidation';
 
 const Questions = () => {
     const { questionNumber } = useSelector((state) => state.screen);
@@ -21,11 +22,12 @@ const Questions = () => {
     const [dropdownResponse, setDropdownResponse] = useState("");
     const [optionResponse, setOptionResponse] = useState([]);
     const [phoneResponse, setPhoneResponse] = useState();
+    const [errorOccured, setErrorOccured] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const handleInputResponse = (e) => {
         e.preventDefault();
         setInputField(e.target.value);
-        dispatch(setAnswer({ questionId: question.id, answer: e.target.value }))
     }
 
     const handleDropdownResponse = ({ value }) => {
@@ -43,6 +45,7 @@ const Questions = () => {
     const answerJSX = (type) => {
         switch (type) {
             case "input": return <Input placeholder={question.placeholder} handleInputResponse={handleInputResponse} value={inputField} />
+            case "email": return <Input placeholder={question.placeholder} handleInputResponse={handleInputResponse} value={inputField} />
             case "dropdown": return <Dropdown options={question.dropdownOptions} placeholder={question.placeholder} handleDropdownResponse={handleDropdownResponse} />
             case "option": return <Options options={question.options} handleOptionResponse={handleOptionResponse} optionLimit={question.optionLimit} />
             case "phone": return <Phone countryCode={question.countryCode} countryPhoneNumber={question.countryPhoneNumber} inputPlaceholder={question.placeholder} handlePhoneResponse={handlePhoneResponse} countryName={question.countryName} />
@@ -50,49 +53,73 @@ const Questions = () => {
         }
     }
 
-    useEffect(() => {
-        const keyDownHandler = event => {
-
-            if (event.key === 'Enter') {
-                handleStoreAnswer();
-            }
-        };
-
-        document.addEventListener('keydown', keyDownHandler);
-
-        return () => {
-            document.removeEventListener('keydown', keyDownHandler);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [question]);
-
     const handleStoreAnswer = () => {
         switch (question.type) {
             case "input":
+                if (formValidation({ type: question.type, isRequired: question.isRequired, value: inputField })) {
+                    dispatch(setAnswer({ questionId: question.id, answer: inputField }))
+                    setErrorOccured(false)
+                    dispatch(setQuestionNumber({ number: question.id + 1 }))
+                }
+                else {
+                    setErrorOccured(true)
+                    setErrorMsg("Please enter valid name")
+                }
+                setInputField("")
+                break
+            case "email":
+                if (formValidation({ type: question.type, isRequired: question.isRequired, value: inputField })) {
+                    dispatch(setAnswer({ questionId: question.id, answer: inputField }))
+                    setErrorOccured(false)
+                    dispatch(setQuestionNumber({ number: question.id + 1 }))
+                }
+                else {
+                    setErrorOccured(true)
+                    setErrorMsg("Please enter valid email")
+                }
                 setInputField("")
                 break
             case "dropdown":
-                dispatch(setAnswer({ questionId: question.id, answer: dropdownResponse }))
-                setDropdownResponse("")
+                // dropdown form validation
+                if (formValidation({ type: question.type, isRequired: question.isRequired, value: dropdownResponse, dropdownoptions: question.dropdownOptions })) {
+                    dispatch(setAnswer({ questionId: question.id, answer: dropdownResponse }))
+                    setDropdownResponse("")
+                    setErrorOccured(false)
+                    dispatch(setQuestionNumber({ number: question.id + 1 }))
+                }
+                else {
+                    setErrorOccured(true)
+                    setErrorMsg("Select valid dropdown option")
+                }
                 break
             case "option":
-                dispatch(setAnswer({ questionId: question.id, answer: optionResponse }))
+                // option form validation
+                if (formValidation({ type: question.type, isRequired: question.isRequired, value: optionResponse, options: question.options, optionLimit: question.optionLimit })) {
+                    dispatch(setAnswer({ questionId: question.id, answer: optionResponse }))
+                    setErrorOccured(false)
+                    dispatch(setQuestionNumber({ number: question.id + 1 }))
+                }
+                else {
+                    setErrorOccured(true)
+                    setErrorMsg("Select valid option(s)")
+                }
                 setOptionResponse([])
                 break
             case "phone":
-                dispatch(setAnswer({ questionId: question.id, answer: phoneResponse }))
-                setPhoneResponse()
-                dispatch(setScreen({ screenName: "thankyou" }))
+                // phone validation
+                if (formValidation({ type: question.type, isRequired: question.isRequired, value: phoneResponse })) {
+                    setErrorOccured(false)
+                    dispatch(setAnswer({ questionId: question.id, answer: phoneResponse }))
+                    setPhoneResponse()
+                    dispatch(setScreen({ screenName: "thankyou" }))
+                }
+                else {
+                    setErrorOccured(true)
+                    setErrorMsg("Enter valid phone number")
+                }
+
                 break
             default: { }
-        }
-
-        // change question
-        if (!question.lastQuestion) {
-            dispatch(setQuestionNumber({ number: question.id + 1 }))
-        }
-        else {
-
         }
     }
 
@@ -109,6 +136,11 @@ const Questions = () => {
             newTitle = newTitle.replace(word, findReplacedWord(questionId))
         })
         return newTitle
+    }
+
+    const resetError = () => {
+        setErrorOccured(false)
+        setErrorMsg("")
     }
 
     return (
@@ -129,10 +161,9 @@ const Questions = () => {
             </div>
             <div className={question.title.subText ? `ques-sub-title` : ''}>{question.title.subText && question.title.subText}</div>
             <div className={question.type === "option" ? `ques-sub-title` : ''}>{question.type === "option" && `Choose ${question.optionLimit} option`}</div>
-            <div className="ans">{answerJSX(question.type)}</div>
+            <div className="ans">{errorOccured ? <div className="error-div">{errorMsg} &nbsp; <Button text="Retry" onClick={() => resetError()} /></div> : answerJSX(question.type)}</div>
             <div className="ques-btn">
-                <div><Button text={question.lastQuestion ? "Submit" : "OK"} onClick={handleStoreAnswer} /></div>
-                {(question.type === "text") && <div> &nbsp; &nbsp; press <strong>Enter ↵</strong> </div>}
+                {!errorOccured && <div><Button text={question.lastQuestion ? "Submit" : "OK"} onClick={handleStoreAnswer} /></div>}
             </div>
         </div >
     )
